@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
             cards: [
                 { imgSrc: "./images/2.png", altText: "Our Creative Mission", description: "Our success is in creating games which are enjoyed by the players around the world." },
                 { imgSrc: "./images/1.png", altText: "Ghost Studio Games", description: "Welcome to Ghost Studio Games." },
-                { imgSrc: "./images/3.png", altText: "Join the Adventure", description: "For now, Ghost Studio Games is a one-person team. It's just me (Ghost)—a passionate developer dedicated to creating the kind of unique and engaging games I've always wanted to play. I'm excited to share my creations with you." }
+                { imgSrc: "./images/3.png", altText: "Join the Adventure", description: "For now, Ghost Studio Games is a one-person team. It's just me (Ghost), a passionate developer dedicated to creating the kind of unique and engaging games I've always wanted to play. I'm excited to share my creations with you." }
             ],
             description: "Welcome to ghoSTudio Games, where creativity respawns for greatness!"
         },
@@ -20,8 +20,8 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         stats: {
             cards: [
-                { imgSrc: "./images/9.png", altText: "Mobile Stats", description: "Our games have been downloaded over 4,400 times on mobile. A huge thank you to our amazing community of players!" },
-                { imgSrc: "./images/10.png", altText: "PC Stats", description: "Our first PC title is launching soon! Player stats will appear here after release, but for now, you can wishlist the game on Steam to be notified on day one." },
+                { imgSrc: "./images/9.png", altText: "Mobile Stats", description: "Our games have been downloaded over 5000 times on mobile. A huge thank you to our amazing community of players!" },
+                { imgSrc: "./images/10.png", altText: "PC Stats", description: "60+ players have stepped into our world of PC games so far, and the momentum continues." },
                 { imgSrc: "./images/11.png", altText: "Console Stats", description: "We're aiming to bring our games to consoles in the future. Expanding to new platforms is our next big goal." }
             ],
             description: "Stats and leaderboards for all our titles."
@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
             cards: [
                 { imgSrc: "./images/13.png", altText: "Youtube", description: "Subscribe to our YouTube channel.", link: "https://www.youtube.com/@ghostudiogames" },
                 { imgSrc: "./images/12.png", altText: "Instagram", description: "Follow us on Instagram!", link: "https://www.instagram.com/ghostudio_games/" },
-                { imgSrc: "./images/15.png", altText: "Discord", description: "Our Discord server is more than an update hub—it’s a space where gamers connect, anime discussions happen, ideas are shared, and feedback shapes the future of our games. Join us to be part of the conversation and help grow the community.", link: "https://discord.gg/7uqW4FW8vH" },
+                { imgSrc: "./images/15.png", altText: "Discord", description: "Our Discord server is more than an update hub, it’s a space where gamers connect, anime discussions happen, ideas are shared, and feedback shapes the future of our games. Join us to be part of the conversation and help grow the community.", link: "https://discord.gg/7uqW4FW8vH" },
                 { imgSrc: "./images/14.png", altText: "X", description: "Get the latest news on X (Twitter).", link: "https://x.com/GhoStudio_Games" },
                 { imgSrc: "./images/16.png", altText: "Steam", description: "Wishlist our upcoming titles on Steam.", link: "https://store.steampowered.com/curator/45751656"}
             ],
