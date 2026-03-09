@@ -181,6 +181,8 @@ document.addEventListener('DOMContentLoaded', () => {
             navLinks.forEach(link => {
                 link.classList.toggle('active', link.dataset.page === pageKey);
             });
+
+            document.title = `Ghost Studio Games | ${pageKey === 'home' ? 'Home' : pageKey}`;
             
             requestAnimationFrame(() => {
                 initializeSlider();
