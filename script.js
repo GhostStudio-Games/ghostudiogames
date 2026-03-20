@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 { imgSrc: "./images/12.png", altText: "Instagram", description: "Follow us on Instagram!", link: "https://www.instagram.com/ghostudio_games/" },
                 { imgSrc: "./images/15.png", altText: "Discord", description: "Our Discord server is more than an update hub, it’s a space where gamers connect, anime discussions happen, ideas are shared, and feedback shapes the future of our games. Join us to be part of the conversation and help grow the community.", link: "https://discord.gg/7uqW4FW8vH" },
                 { imgSrc: "./images/14.png", altText: "X", description: "Get the latest news on X (Twitter).", link: "https://x.com/GhoStudio_Games" },
-                { imgSrc: "./images/16.png", altText: "Steam", description: "Wishlist our upcoming titles on Steam.", link: "https://store.steampowered.com/curator/45751656"}
+                { imgSrc: "./images/16.png", altText: "TikTok", description: "Follow us on TikTok!", link: "https://www.tiktok.com/@ghostudiogames"}
             ],
             description: "Connect with us on social media."
         },
