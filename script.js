@@ -3,10 +3,10 @@ document.addEventListener('DOMContentLoaded', () => {
         home: {
             cards: [
                 { imgSrc: "./images/2.png", altText: "Our Creative Mission", description: "Our success is in creating games which are enjoyed by the players around the world." },
-                { imgSrc: "./images/1.png", altText: "Ghost Studio Games", description: "Welcome to Ghost Studio Games." },
-                { imgSrc: "./images/3.png", altText: "Join the Adventure", description: "For now, Ghost Studio Games is a one-person team. It's just me (Ghost), a passionate developer dedicated to creating the kind of unique and engaging games I've always wanted to play. I'm excited to share my creations with you." }
+                { imgSrc: "./images/1.png", altText: "ghoSTudio games", description: "Welcome to ghoSTudio games." },
+                { imgSrc: "./images/3.png", altText: "Join the Adventure", description: "For now, ghoSTudio games is a one-person team. It's just me (Ghost), a passionate developer dedicated to creating the kind of unique and engaging games I've always wanted to play. I'm excited to share my creations with you." }
             ],
-            description: "Welcome to ghoSTudio Games, where creativity respawns for greatness!"
+            description: "Welcome to ghoSTudio games, where creativity respawns for greatness!"
         },
         ourGames: {
             cards: [
@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
         stats: {
             cards: [
                 { imgSrc: "./images/9.png", altText: "Mobile Stats", description: "Our games have been downloaded over 5000 times on mobile. A huge thank you to our amazing community of players!" },
-                { imgSrc: "./images/10.png", altText: "PC Stats", description: "60+ players have stepped into our world of PC games so far, and the momentum continues." },
+                { imgSrc: "./images/10.png", altText: "PC Stats", description: "100+ players have stepped into our world of PC games so far, and the momentum continues." },
                 { imgSrc: "./images/11.png", altText: "Console Stats", description: "We're aiming to bring our games to consoles in the future. Expanding to new platforms is our next big goal." }
             ],
             description: "Stats and leaderboards for all our titles."
@@ -38,9 +38,9 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         joinUs: {
             cards: [
-                { imgSrc: "./images/17.png", altText: "Level Designer", description: "Thank you for your interest in joining our team at Ghost Studio Games. At this time, we do not have any job openings." },
-                { imgSrc: "./images/18.png", altText: "Programmer", description: "Thank you for your interest in joining our team at Ghost Studio Games. At this time, we do not have any job openings." },
-                { imgSrc: "./images/19.png", altText: "Web Developer", description: "Thank you for your interest in joining our team at Ghost Studio Games. At this time, we do not have any job openings." }
+                { imgSrc: "./images/17.png", altText: "Level Designer", description: "Thank you for your interest in joining our team at ghoSTudio games. At this time, we do not have any job openings." },
+                { imgSrc: "./images/18.png", altText: "Programmer", description: "Thank you for your interest in joining our team at ghoSTudio games. At this time, we do not have any job openings." },
+                { imgSrc: "./images/19.png", altText: "Web Developer", description: "Thank you for your interest in joining our team at ghoSTudio games. At this time, we do not have any job openings." }
             ],
             description: "Ready to join the team? Check out our open positions."
         },
@@ -56,7 +56,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const sliderContainer = document.querySelector('.slider-container');
     const slider = document.querySelector('.slider');
     const pageDescription = document.querySelector('.page-description');
-    const cardButton = document.querySelector('.card-button');
     const navLinks = document.querySelectorAll('nav ul li a');
     const headerLogoLink = document.querySelector('.logo-link');
 
@@ -73,20 +72,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function animateSlider() {
-        if (!sliderState.images) return;
+        if (!sliderState.cards) return;
 
-        sliderState.images.forEach((img, index) => {
-            img.classList.remove('active', 'prev', 'next');
+        sliderState.cards.forEach((card, index) => {
+            card.classList.remove('active', 'prev', 'next');
             if (index === sliderState.counter) {
-                img.classList.add('active');
+                card.classList.add('active');
             } else if (index === sliderState.counter - 1) {
-                img.classList.add('prev');
+                card.classList.add('prev');
             } else if (index === sliderState.counter + 1) {
-                img.classList.add('next');
+                card.classList.add('next');
             }
         });
         
-        gsap.to(sliderState.images, {
+        gsap.to(sliderState.cards, {
             duration: 0.6,
             scale: (i) => (i === sliderState.counter ? 1.1 : (Math.abs(i - sliderState.counter) === 1 ? 0.9 : 0.8)),
             ease: "power3.out",
@@ -108,30 +107,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    function updateButton() {
-        const pageKey = sliderState.currentPageKey;
-        if (!pageKey || !pageData[pageKey]) return;
-        
-        const activeCardIndex = sliderState.counter;
-        const cards = pageData[pageKey].cards;
-        const cardData = cards && cards[activeCardIndex] ? cards[activeCardIndex] : null;
-
-        if (cardData && cardData.link) {
-            cardButton.href = cardData.link;
-            cardButton.classList.remove('hidden');
-
-            if (cardData.buttonText) {
-                cardButton.textContent = cardData.buttonText;
-                cardButton.classList.add('disabled');
-            } else {
-                cardButton.textContent = 'Visit Site';
-                cardButton.classList.remove('disabled');
-            }
-        } else {
-            cardButton.classList.add('hidden');
-        }
-    }
-
     function checkOverflow() {
         if (slider.scrollWidth > sliderContainer.clientWidth) {
             sliderContainer.classList.add('is-scrollable');
@@ -143,12 +118,11 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateSlider() {
         animateSlider();
         updateDescription();
-        updateButton();
     }
 
     function initializeSlider() {
-        const images = slider.querySelectorAll('img');
-        if (images.length === 0) {
+        const cards = slider.querySelectorAll('.card');
+        if (cards.length === 0) {
             sliderContainer.style.visibility = 'hidden';
             sliderState = {};
             return;
@@ -156,9 +130,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         sliderContainer.style.visibility = 'visible';
         slider.style.transform = 'none';
-        sliderState.images = images;
-        sliderState.maxCounter = images.length - 1;
-        sliderState.counter = Math.floor(images.length / 2);
+        sliderState.cards = cards;
+        sliderState.maxCounter = cards.length - 1;
+        sliderState.counter = Math.floor(cards.length / 2);
         
         updateSlider();
         checkOverflow();
@@ -174,7 +148,19 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
             slider.innerHTML = '';
             if (data.cards && data.cards.length > 0) {
-                const cardHTML = data.cards.map(card => `<img src="${card.imgSrc}" alt="${card.altText}">`).join('');
+                const cardHTML = data.cards.map(card => {
+                    let btnHTML = '';
+                    if (card.link) {
+                        const btnText = card.buttonText ? card.buttonText : 'Explore';
+                        const btnClass = card.buttonText ? 'card-button disabled' : 'card-button';
+                        btnHTML = `<a href="${card.link}" class="${btnClass}" target="_blank">${btnText}</a>`;
+                    }
+                    return `
+                    <div class="card">
+                        <img src="${card.imgSrc}" alt="${card.altText}">
+                        ${btnHTML}
+                    </div>`;
+                }).join('');
                 slider.innerHTML = cardHTML;
             }
             pageDescription.textContent = data.description || '';
@@ -182,7 +168,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 link.classList.toggle('active', link.dataset.page === pageKey);
             });
 
-            document.title = `Ghost Studio Games | ${pageKey === 'home' ? 'Home' : pageKey}`;
+            document.title = `ghoSTudio games | ${pageKey === 'home' ? 'Home' : pageKey}`;
             
             requestAnimationFrame(() => {
                 initializeSlider();
@@ -193,9 +179,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     function selectCardOnClick(e) {
-        if (e.target.tagName !== 'IMG' || e.target.classList.contains('active')) return;
+        if (e.target.closest('.card-button')) return;
 
-        const clickedIndex = Array.from(sliderState.images).indexOf(e.target);
+        const card = e.target.closest('.card');
+        if (!card || card.classList.contains('active')) return;
+
+        const clickedIndex = Array.from(sliderState.cards).indexOf(card);
         if (clickedIndex === -1) return;
 
         sliderState.counter = clickedIndex;

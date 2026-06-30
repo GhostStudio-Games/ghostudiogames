@@ -63,7 +63,6 @@ header {
     display: block;
 }
 
-
 nav {
     margin: 20px 0;
 }
@@ -130,25 +129,24 @@ main.content-loading .page-description {
     transition: opacity 0.3s ease-in-out;
 }
 
-.slider img {
-    width: 200px;
-    height: 290px;
+.slider .card {
+    position: relative;
     margin: 0 10px;
-    object-fit: cover;
     flex-shrink: 0;
-    user-select: none;
     transform: scale(0.8);
-    opacity: 1;
     cursor: pointer;
 }
 
-.slider img.active {
-    cursor: default;
+.slider .card img {
+    width: 200px;
+    height: 290px;
+    object-fit: cover;
+    display: block;
+    user-select: none;
 }
 
-.slider img.prev,
-.slider img.next {
-    transform: scale(0.9);
+.slider .card.active {
+    cursor: default;
 }
 
 .page-description {
@@ -165,15 +163,26 @@ main.content-loading .page-description {
     background-color: #eee;
     color: #1c1c1c;
     padding: 12px 24px;
-    margin-top: 20px;
     border-radius: 5px;
     text-decoration: none;
     font-weight: bold;
     transition: transform 0.3s ease, opacity 0.3s ease, visibility 0.3s ease, background-color 0.3s;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.slider .card.active .card-button {
+    opacity: 1;
+    visibility: visible;
 }
 
 .card-button:hover:not(.disabled) {
-    transform: scale(1.05);
+    transform: translate(-50%, -50%) scale(1.05);
 }
 
 .card-button.disabled {
@@ -181,12 +190,6 @@ main.content-loading .page-description {
     color: #ccc;
     cursor: not-allowed;
     pointer-events: none;
-}
-
-.card-button.hidden {
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-10px);
 }
 
 @media (max-width: 768px) {
@@ -203,7 +206,7 @@ main.content-loading .page-description {
         justify-content: flex-start;
         padding: 0 20px;
     }
-    .slider img {
+    .slider .card img {
         width: 180px;
         height: 260px;
     }
@@ -224,7 +227,7 @@ main.content-loading .page-description {
         display: block;
         margin: 10px 0;
     }
-    .slider img {
+    .slider .card img {
         width: 200px;
         height: 290px;
     }
