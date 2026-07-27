@@ -40,7 +40,7 @@ body::after {
     z-index: -1;
 }
 
-header, nav, main {
+header, nav, main, footer {
     position: relative;
     z-index: 1;
 }
@@ -192,6 +192,84 @@ main.content-loading .page-description {
     pointer-events: none;
 }
 
+footer {
+    padding: 30px 0;
+    margin-top: auto;
+}
+
+footer p {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+footer a {
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+footer a:hover {
+    color: white;
+}
+
+.privacy-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 30px;
+    text-align: left;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    margin-bottom: 40px;
+    line-height: 1.6;
+}
+
+.privacy-container h1 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 2.2rem;
+}
+
+.privacy-container h3 {
+    margin-top: 30px;
+    margin-bottom: 15px;
+    color: #f0f0f0;
+}
+
+.privacy-container h4 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    color: #e0e0e0;
+}
+
+.privacy-container p {
+    margin-bottom: 15px;
+}
+
+.privacy-container ul {
+    margin-bottom: 20px;
+    padding-left: 25px;
+}
+
+.privacy-container li {
+    margin-bottom: 8px;
+}
+
+.privacy-container a {
+    color: #66b2ff;
+    text-decoration: none;
+}
+
+.privacy-container a:hover {
+    text-decoration: underline;
+}
+
+.privacy-container hr {
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    margin: 30px 0;
+}
+
 @media (max-width: 768px) {
     .slider-container {
         justify-content: flex-start;
@@ -217,6 +295,9 @@ main.content-loading .page-description {
     .header-logo {
         height: 125px;
     }
+    .privacy-container {
+        padding: 30px 20px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -236,5 +317,8 @@ main.content-loading .page-description {
     }
     .header-logo {
         height: 100px;
+    }
+    .privacy-container h1 {
+        font-size: 1.8rem;
     }
 }

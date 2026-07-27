@@ -203,13 +203,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     
     headerLogoLink.addEventListener('click', (e) => {
+        if (window.location.pathname.includes('privacy.html')) return;
         e.preventDefault();
         renderPage('home');
     });
     
     window.addEventListener('resize', debounce(() => {
-        initializeSlider();
+        if (document.querySelector('.slider')) {
+            initializeSlider();
+        }
     }));
 
-    renderPage('home');
+    if (document.querySelector('.slider')) {
+        renderPage('home');
+    }
 });
