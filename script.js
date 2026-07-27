@@ -58,6 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const pageDescription = document.querySelector('.page-description');
     const navLinks = document.querySelectorAll('nav ul li a');
     const headerLogoLink = document.querySelector('.logo-link');
+    const backToTopBtn = document.getElementById('back-to-top');
 
     let sliderState = {};
 
@@ -69,6 +70,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 func.apply(this, args);
             }, delay);
         };
+    }
+
+    if (backToTopBtn) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        });
+
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
     }
 
     function animateSlider() {
@@ -191,7 +206,9 @@ document.addEventListener('DOMContentLoaded', () => {
         updateSlider();
     }
 
-    slider.addEventListener('click', selectCardOnClick);
+    if (slider) {
+        slider.addEventListener('click', selectCardOnClick);
+    }
 
     navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
@@ -203,7 +220,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     
     headerLogoLink.addEventListener('click', (e) => {
-        if (window.location.pathname.includes('privacy.html')) return;
+        if (window.location.pathname.includes('legal.html')) return;
         e.preventDefault();
         renderPage('home');
     });
