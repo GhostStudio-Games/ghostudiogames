@@ -9,14 +9,28 @@ document.addEventListener('DOMContentLoaded', () => {
             description: "Welcome to ghoSTudio games, where creativity respawns for greatness!"
         },
         ourGames: {
-            cards: [
-                { imgSrc: "./images/4.png", altText: "SlideRush", description: "A thrilling and addictive game designed for non-stop fun across multiple dynamic levels!", link: "https://play.google.com/store/apps/details?id=com.GhoStudioGames.SlideRush" },
-                { imgSrc: "./images/5.png", altText: "Zero Drift", description: "The ultimate drift racing experience that combines skill, control, and lightning-fast speed!", link: "https://play.google.com/store/apps/details?id=com.GhoStudioGames.ZeroDrift" },
-                { imgSrc: "./images/7.png", altText: "Phobophobia 1.0 – The Experiment", description: "A story-driven psychological horror experience where you must survive 10 phobia-inspired rooms, each filled with atmospheric puzzles, relentless dread, and unsettling truths waiting to be uncovered.", link: "https://store.steampowered.com/app/3981410/Phobophobia_10__The_Experiment/"},
-                { imgSrc: "./images/6.png", altText: "Extreme 2048", description: "Take your 2048 game experience to the next level with four challenging modes.", link: "https://play.google.com/store/apps/details?id=com.GhoStudioGames.Extreme2048" },
-                { imgSrc: "./images/8.png", altText: "Next Title", description: "Our next title is still a whisper in the ether—an idea taking form. What will emerge from the imagination? Only time will tell.", link: "#", buttonText: "Coming Soon" }
+            hasTabs: true,
+            tabs: [
+                { id: 'mobile', label: 'Mobile Games' },
+                { id: 'pc', label: 'PC Games' }
             ],
-            description: "Explore our library of released and upcoming titles."
+            mobile: {
+                cards: [
+                    { imgSrc: "./images/4.png", altText: "SlideRush", description: "A thrilling and addictive game designed for non-stop fun across multiple dynamic levels!", link: "https://play.google.com/store/apps/details?id=com.GhoStudioGames.SlideRush" },
+                    { imgSrc: "./images/5.png", altText: "Zero Drift", description: "The ultimate drift racing experience that combines skill, control, and lightning-fast speed!", link: "https://play.google.com/store/apps/details?id=com.GhoStudioGames.ZeroDrift" },
+                    { imgSrc: "./images/6.png", altText: "Extreme 2048", description: "Take your 2048 game experience to the next level with four challenging modes.", link: "https://play.google.com/store/apps/details?id=com.GhoStudioGames.Extreme2048" },
+                    { imgSrc: "./images/21.png", altText: "Port Escape", description: "Solve the puzzles and find your way out in the thrilling adventure of Port Escape!", link: "https://play.google.com/store/apps/details?id=com.GhoStudioGames.PortEscape" },
+                    { imgSrc: "./images/22.png", altText: "Marble Merge", description: "Experience the ultimate puzzle challenge with Marble Merge!", link: "https://play.google.com/store/apps/details?id=com.GhoStudioGames.MarbleMerge" }
+                ],
+                description: "Explore our library of released mobile titles."
+            },
+            pc: {
+                cards: [
+                    { imgSrc: "./images/7.png", altText: "Phobophobia 1.0 – The Experiment", description: "A story-driven psychological horror experience where you must survive 10 phobia-inspired rooms, each filled with atmospheric puzzles, relentless dread, and unsettling truths waiting to be uncovered.", link: "https://store.steampowered.com/app/3981410/Phobophobia_10__The_Experiment/"},
+                    { imgSrc: "./images/23.png", altText: "Phobophobia 2.0", description: "The nightmare continues. Prepare to face deeper fears and darker secrets in the next chapter of the Phobophobia series.", buttonText: "Coming Soon" }
+                ],
+                description: "Explore our library of released and upcoming PC titles."
+            }
         },
         stats: {
             cards: [
@@ -112,13 +126,16 @@ document.addEventListener('DOMContentLoaded', () => {
         const pageKey = sliderState.currentPageKey;
         if (!pageKey || !pageData[pageKey]) return;
         
+        const data = pageData[pageKey];
+        const subData = data.hasTabs ? data[sliderState.currentTabId] : data;
+        
         const activeCardIndex = sliderState.counter;
-        const cards = pageData[pageKey].cards;
+        const cards = subData.cards;
         
         if (cards && cards[activeCardIndex] && cards[activeCardIndex].description) {
             pageDescription.textContent = cards[activeCardIndex].description;
         } else {
-            pageDescription.textContent = pageData[pageKey].description || '';
+            pageDescription.textContent = subData.description || '';
         }
     }
 
@@ -135,6 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
         updateDescription();
     }
 
+    
     function initializeSlider() {
         const cards = slider.querySelectorAll('.card');
         if (cards.length === 0) {
@@ -147,28 +165,64 @@ document.addEventListener('DOMContentLoaded', () => {
         slider.style.transform = 'none';
         sliderState.cards = cards;
         sliderState.maxCounter = cards.length - 1;
-        sliderState.counter = Math.floor(cards.length / 2);
+        
+        if (sliderState.currentPageKey === 'ourGames' && sliderState.currentTabId === 'pc') {
+             sliderState.counter = 0;
+        } else {
+             sliderState.counter = Math.floor(cards.length / 2);
+        }
         
         updateSlider();
         checkOverflow();
     }
 
-    function renderPage(pageKey) {
+
+    function renderPage(pageKey, tabId = null) {
         const data = pageData[pageKey];
         if (!data) return;
         
         sliderState.currentPageKey = pageKey;
+        
+        const tabsContainer = document.getElementById('page-tabs');
+        let renderData = data;
+        
+        if (data.hasTabs) {
+            sliderState.currentTabId = tabId || data.tabs[0].id;
+            renderData = data[sliderState.currentTabId];
+            
+            tabsContainer.innerHTML = data.tabs.map(tab => `
+                <button class="tab-btn ${tab.id === sliderState.currentTabId ? 'active' : ''}" data-tab="${tab.id}">${tab.label}</button>
+            `).join('');
+            tabsContainer.classList.remove('hidden');
+            
+            tabsContainer.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    if (e.target.classList.contains('active')) return;
+                    renderPage(pageKey, e.target.dataset.tab);
+                });
+            });
+        } else {
+            sliderState.currentTabId = null;
+            if (tabsContainer) {
+                tabsContainer.innerHTML = '';
+                tabsContainer.classList.add('hidden');
+            }
+        }
+
         main.classList.add('content-loading');
 
         setTimeout(() => {
             slider.innerHTML = '';
-            if (data.cards && data.cards.length > 0) {
-                const cardHTML = data.cards.map(card => {
+            if (renderData.cards && renderData.cards.length > 0) {
+                const cardHTML = renderData.cards.map(card => {
                     let btnHTML = '';
                     if (card.link) {
                         const btnText = card.buttonText ? card.buttonText : 'Explore';
                         const btnClass = card.buttonText ? 'card-button disabled' : 'card-button';
                         btnHTML = `<a href="${card.link}" class="${btnClass}" target="_blank">${btnText}</a>`;
+                    } else if (card.buttonText) {
+                         // Fallback if no link but button text exists
+                         btnHTML = `<a href="#" class="card-button disabled" onclick="return false;">${card.buttonText}</a>`;
                     }
                     return `
                     <div class="card">
@@ -178,7 +232,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 }).join('');
                 slider.innerHTML = cardHTML;
             }
-            pageDescription.textContent = data.description || '';
+            pageDescription.textContent = renderData.description || '';
+            
             navLinks.forEach(link => {
                 link.classList.toggle('active', link.dataset.page === pageKey);
             });
