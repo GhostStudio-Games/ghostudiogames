@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
             pc: {
                 cards: [
                     { imgSrc: "./images/7.png", altText: "Phobophobia 1.0 – The Experiment", description: "A story-driven psychological horror experience where you must survive 10 phobia-inspired rooms, each filled with atmospheric puzzles, relentless dread, and unsettling truths waiting to be uncovered.", link: "https://store.steampowered.com/app/3981410/Phobophobia_10__The_Experiment/"},
-                    { imgSrc: "./images/23.png", altText: "Phobophobia 2.0", description: "The nightmare continues. Prepare to face deeper fears and darker secrets in the next chapter of the Phobophobia series.", buttonText: "Coming Soon" }
+                    { imgSrc: "./images/23.png", altText: "Phobophobia 2.0", description: "The nightmare continues. Prepare to face deeper fears and darker secrets in the next chapter of the Phobophobia series.", link: "https://store.steampowered.com/app/5202270/Phobophobia_20__System_Override/"}
                 ],
                 description: "Explore our library of released and upcoming PC titles."
             }
