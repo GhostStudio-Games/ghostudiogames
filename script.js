@@ -20,7 +20,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     { imgSrc: "./images/5.png", altText: "Zero Drift", description: "The ultimate drift racing experience that combines skill, control, and lightning-fast speed!", link: "https://play.google.com/store/apps/details?id=com.GhoStudioGames.ZeroDrift" },
                     { imgSrc: "./images/6.png", altText: "Extreme 2048", description: "Take your 2048 game experience to the next level with four challenging modes.", link: "https://play.google.com/store/apps/details?id=com.GhoStudioGames.Extreme2048" },
                     { imgSrc: "./images/21.png", altText: "Port Escape", description: "Solve the puzzles and find your way out in the thrilling adventure of Port Escape!", link: "https://play.google.com/store/apps/details?id=com.GhoStudioGames.PortEscape" },
-                    { imgSrc: "./images/22.png", altText: "Marble Merge", description: "Experience the ultimate puzzle challenge with Marble Merge!", link: "https://play.google.com/store/apps/details?id=com.GhoStudioGames.MarbleMerge" }
+                    { imgSrc: "./images/22.png", altText: "Marble Merge", description: "Experience the ultimate puzzle challenge with Marble Merge!", link: "https://play.google.com/store/apps/details?id=com.GhoStudioGames.MarbleMerge" },
+                    { imgSrc: "./images/24.png", altText: "Royal Champool", description: "The modern digital version of the classic Indian cross-and-circle dice board game!", link: "https://play.google.com/store/apps/details?id=com.GhoStudioGames.Champul" }
                 ],
                 description: "Explore our library of released mobile titles."
             },
